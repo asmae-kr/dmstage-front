@@ -1,0 +1,91 @@
+<div class="login-container">
+  <div class="login-card">
+    
+    <!-- Header avec logo -->
+    <div class="login-header">
+      <div class="logo-section">
+        <div class="app-logo">🎓</div>
+        <h1>Demande de Stage</h1>
+        <p>Province de Berkane</p>
+      </div>
+    </div>
+
+    <!-- Formulaire de connexion -->
+    <div class="login-form-section">
+      <h2>🔐 Connexion</h2>
+      <p class="form-subtitle">Accédez à votre espace personnel</p>
+
+      <form (ngSubmit)="onSubmit()" class="login-form">
+        
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email" class="form-label">
+            📧 Adresse email
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            [(ngModel)]="email"
+            class="form-control"
+            placeholder="votre.email@example.com"
+            required
+            autocomplete="email"
+          />
+        </div>
+
+        <!-- Mot de passe -->
+        <div class="form-group">
+          <label for="password" class="form-label">
+            🔒 Mot de passe
+          </label>
+          <input
+            type="password"
+            id="password"
+            name="motDePasse"
+            [(ngModel)]="motDePasse"
+            class="form-control"
+            placeholder="Votre mot de passe"
+            required
+            autocomplete="current-password"
+          />
+        </div>
+
+        <!-- Message d'erreur -->
+        <div *ngIf="errorMsg" class="error-message">
+          ❌ {{ errorMsg }}
+        </div>
+
+        <!-- Bouton de connexion -->
+        <button type="submit" class="btn-login" [disabled]="!email || !motDePasse">
+          Se connecter
+        </button>
+
+        <!-- Liens utiles -->
+        <div class="form-links">
+          <a routerLink="/register" class="link-register">
+            ✨ Créer un compte
+          </a>
+          <a routerLink="/home" class="link-home">
+            🏠 Retour à l'accueil
+          </a>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- Information de test -->
+    <div class="test-info">
+      <h4>🧪 Comptes de test</h4>
+      <div class="test-accounts">
+        <div class="test-account">
+          <strong>Admin:</strong> admin@berkane.ma / admin123
+        </div>
+        <div class="test-account">
+          <strong>User:</strong> user@berkane.ma / user123
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

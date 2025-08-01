@@ -1,0 +1,326 @@
+<div class="demande-form-container">
+  
+  <!-- Header -->
+  <header class="form-header">
+    <div class="header-content">
+      <div class="header-logos">
+        <div class="logo-item">🇲🇦</div>
+        <div class="logo-item">🏛️</div>
+        <div class="logo-item">🏢</div>
+      </div>
+      <h1>Formulaire Demande de Stage</h1>
+      <div class="user-info">
+        <span>Utilisateur connecté</span>
+        <button routerLink="/home" class="btn-back">🏠 Accueil</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenu principal -->
+  <main class="form-content">
+    <div class="form-wrapper">
+      
+      <!-- Titre du formulaire -->
+      <div class="form-title">
+        <h2>📝 Nouvelle Demande de Stage</h2>
+        <p>Veuillez remplir tous les champs requis</p>
+      </div>
+
+      <!-- Formulaire -->
+      <form class="demande-form" (ngSubmit)="onSubmit(demandeForm)" #demandeForm="ngForm">
+        
+        <!-- SECTION 1: Informations personnelles -->
+        <div class="form-section">
+          <div class="section-header">
+            <h3>👤 Informations personnelles</h3>
+            <div class="section-indicator">1/3</div>
+          </div>
+          
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="cin" class="form-label">CIN *</label>
+              <input
+                type="text"
+                id="cin"
+                name="cin"
+                [(ngModel)]="demande.cin"
+                class="form-control"
+                placeholder="Ex: BK123456"
+                required
+              >
+            </div>
+            
+            <div class="form-group">
+              <label for="email" class="form-label">Email *</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                [(ngModel)]="demande.email"
+                class="form-control"
+                placeholder="votre.email@example.com"
+                required
+              >
+            </div>
+            
+            <div class="form-group">
+              <label for="nom" class="form-label">Nom *</label>
+              <input
+                type="text"
+                id="nom"
+                name="nom"
+                [(ngModel)]="demande.nom"
+                class="form-control"
+                placeholder="Votre nom"
+                required
+              >
+            </div>
+            
+            <div class="form-group">
+              <label for="prenom" class="form-label">Prénom *</label>
+              <input
+                type="text"
+                id="prenom"
+                name="prenom"
+                [(ngModel)]="demande.prenom"
+                class="form-control"
+                placeholder="Votre prénom"
+                required
+              >
+            </div>
+            
+            <div class="form-group">
+              <label for="adresse" class="form-label">Adresse *</label>
+              <input
+                type="text"
+                id="adresse"
+                name="adresse"
+                [(ngModel)]="demande.adresseDomicile"
+                class="form-control"
+                placeholder="Votre adresse complète"
+                required
+              >
+            </div>
+            
+            <div class="form-group">
+              <label for="telephone" class="form-label">Téléphone *</label>
+              <input
+                type="tel"
+                id="telephone"
+                name="telephone"
+                [(ngModel)]="demande.telephone"
+                class="form-control"
+                placeholder="06XXXXXXXX"
+                required
+              >
+            </div>
+          </div>
+          
+          <!-- Sexe -->
+          <div class="form-group gender-group">
+            <label class="form-label">Sexe *</label>
+            <div class="radio-group">
+              <label class="radio-option">
+                <input type="radio" name="sexe" value="HOMME" [(ngModel)]="demande.sexe" required>
+                <span class="radio-custom"></span>
+                Homme
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="sexe" value="FEMME" [(ngModel)]="demande.sexe" required>
+                <span class="radio-custom"></span>
+                Femme
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2: Informations sur la demande de stage -->
+        <div class="form-section">
+          <div class="section-header">
+            <h3>🎓 Informations sur la demande de stage</h3>
+            <div class="section-indicator">2/3</div>
+          </div>
+          
+          <div class="form-group">
+            <label for="diplome" class="form-label">Diplôme *</label>
+            <select id="diplome" name="diplome" [(ngModel)]="diplome" class="form-control" required>
+              <option value="">Sélectionnez votre diplôme</option>
+              <option value="Baccalauréat">Baccalauréat</option>
+              <option value="DUT">DUT</option>
+              <option value="BTS">BTS</option>
+              <option value="Licence">Licence</option>
+              <option value="Master">Master</option>
+              <option value="Doctorat">Doctorat</option>
+              <option value="Autre">Autre</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="profil" class="form-label">Profil du diplôme *</label>
+            <textarea
+              id="profil"
+              name="profil"
+              [(ngModel)]="profil"
+              class="form-control textarea"
+              placeholder="Exemple: Technicien Spécialisé en Gestion des Entreprises"
+              rows="3"
+              required
+            ></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="specialite" class="form-label">Spécialité *</label>
+            <input
+              type="text"
+              id="specialite"
+              name="specialite"
+              [(ngModel)]="specialite"
+              class="form-control"
+              placeholder="Votre spécialité"
+              required
+            >
+          </div>
+          
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="dateDebut" class="form-label">Date de début *</label>
+              <input
+                type="date"
+                id="dateDebut"
+                name="dateDebut"
+                [(ngModel)]="demande.dateDebut"
+                class="form-control"
+                (change)="onDateChange()"
+                required
+              >
+            </div>
+            
+            <div class="form-group">
+              <label for="dateFin" class="form-label">Date de fin *</label>
+              <input
+                type="date"
+                id="dateFin"
+                name="dateFin"
+                [(ngModel)]="demande.dateFin"
+                class="form-control"
+                (change)="onDateChange()"
+                required
+              >
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="duree" class="form-label">Durée du stage (en mois) *</label>
+            <input
+              type="text"
+              id="duree"
+              name="duree"
+              [(ngModel)]="duree"
+              class="form-control"
+              placeholder="Ex: 2 mois"
+              readonly
+            >
+          </div>
+          
+          <div class="form-group">
+            <label for="typeStage" class="form-label">Type de stage *</label>
+            <select id="typeStage" name="typeStage" [(ngModel)]="demande.typeStage" class="form-control" required>
+              <option value="">Sélectionnez le type de stage</option>
+              <option value="Stage d'initiation">Stage d'initiation</option>
+              <option value="Stage d'application">Stage d'application</option>
+              <option value="Stage de fin d'études">Stage de fin d'études</option>
+              <option value="Stage d'observation">Stage d'observation</option>
+              <option value="Stage de perfectionnement">Stage de perfectionnement</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- SECTION 3: Pièces jointes -->
+        <div class="form-section">
+          <div class="section-header">
+            <h3>📎 Pièces jointes</h3>
+            <div class="section-indicator">3/3</div>
+          </div>
+          
+          <div class="upload-section">
+            <div class="upload-info">
+              <h4>📋 Documents requis :</h4>
+              <ul>
+                <li>✅ Convention de stage</li>
+                <li>✅ Demande de stage</li>
+                <li>✅ CV à jour</li>
+                <li>✅ Lettre de motivation</li>
+              </ul>
+            </div>
+            
+            <div class="file-upload">
+              <div class="upload-area">
+                <div class="upload-icon">📁</div>
+                <p>Sélectionnez vos fichiers (4 documents requis)</p>
+                <input 
+                  type="file" 
+                  multiple 
+                  accept=".pdf,.doc,.docx,.jpg,.png"
+                  (change)="onMultipleFileSelect($event)"
+                >
+                <button type="button" class="btn-upload">Choisir les fichiers</button>
+              </div>
+              
+              <!-- Affichage des fichiers sélectionnés -->
+              <div *ngIf="selectedFilesCount > 0" class="selected-files">
+                <h5>Fichiers sélectionnés ({{ selectedFilesCount }}/4) :</h5>
+                <div class="file-list">
+                  <div *ngIf="isFileSelected('conventionStage')" class="file-item">
+                    ✅ Convention: {{ getFileName('conventionStage') }}
+                  </div>
+                  <div *ngIf="isFileSelected('demandeStage')" class="file-item">
+                    ✅ Demande: {{ getFileName('demandeStage') }}
+                  </div>
+                  <div *ngIf="isFileSelected('cv')" class="file-item">
+                    ✅ CV: {{ getFileName('cv') }}
+                  </div>
+                  <div *ngIf="isFileSelected('lettreMotivation')" class="file-item">
+                    ✅ Lettre: {{ getFileName('lettreMotivation') }}
+                  </div>
+                </div>
+                
+                <div *ngIf="missingFileTypes.length > 0" class="missing-files">
+                  <p>Documents manquants: {{ missingFileTypes.join(', ') }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Messages -->
+        <div *ngIf="errorMessage" class="alert alert-danger">
+          {{ errorMessage }}
+        </div>
+        
+        <div *ngIf="successMessage" class="alert alert-success">
+          {{ successMessage }}
+        </div>
+
+        <!-- Actions -->
+        <div class="form-actions">
+          <button type="button" (click)="onCancel()" class="btn-cancel" [disabled]="loading">
+            ❌ Annuler
+          </button>
+          <button type="submit" class="btn-submit" [disabled]="loading">
+            <span *ngIf="loading">⏳ Envoi en cours...</span>
+            <span *ngIf="!loading">✅ Envoyer la demande</span>
+          </button>
+        </div>
+        
+      </form>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="form-footer">
+    <p>
+      Droits de propriété intellectuelle de la Préfecture de la Province de Berkane, 
+      Division de la Gouvernance Numérique Territoriale Intégrée. © | 2025 | V1.0.0
+    </p>
+  </footer>
+</div>

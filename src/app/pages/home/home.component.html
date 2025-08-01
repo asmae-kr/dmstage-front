@@ -1,0 +1,161 @@
+<div class="home-container">
+  <!-- Header avec logos officiels -->
+  <header class="header-section">
+    <div class="logos-container">
+      <div class="logo-item">
+        <div class="logo-placeholder">🇲🇦</div>
+        <span>Royaume du Maroc</span>
+      </div>
+      <div class="logo-item">
+        <div class="logo-placeholder">🏛️</div>
+        <span>Ministère de l'Intérieur</span>
+      </div>
+      <div class="logo-item">
+        <div class="logo-placeholder">🏢</div>
+        <span>Province de Berkane</span>
+      </div>
+    </div>
+    
+    <!-- Menu utilisateur -->
+    <div class="user-menu" *ngIf="isLoggedIn()">
+      <div class="user-info">
+        <span>{{ getCurrentUser()?.nom || getCurrentUser()?.email }}</span>
+        <button (click)="logout()" class="btn-logout">Déconnexion</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenu principal -->
+  <main class="main-content">
+    <!-- Section héro -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          🎓 Demande de Stage
+        </h1>
+        <p class="hero-subtitle">
+          Plateforme officielle pour les demandes de stage
+          <br>
+          <strong>Province de Berkane</strong>
+        </p>
+        
+        <!-- Illustration -->
+        <div class="hero-illustration">
+          <div class="illustration-container">
+            <div class="person-working">
+              <div class="person">
+                <div class="person-head"></div>
+                <div class="person-body"></div>
+                <div class="person-laptop"></div>
+              </div>
+              <div class="documents">
+                <div class="document"></div>
+                <div class="document"></div>
+                <div class="document"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section actions -->
+    <section class="actions-section">
+      <div class="actions-container">
+        
+        <!-- Si utilisateur connecté -->
+        <div *ngIf="isLoggedIn()" class="connected-actions">
+          <h2>🚀 Actions disponibles</h2>
+          <div class="action-cards">
+            <div class="action-card">
+              <div class="card-icon">📝</div>
+              <h3>Nouvelle Demande</h3>
+              <p>Soumettre une nouvelle demande de stage</p>
+              <button (click)="goToDemande()" class="btn-action">
+                Créer une demande
+              </button>
+            </div>
+            
+            <div class="action-card">
+              <div class="card-icon">📋</div>
+              <h3>Mes Demandes</h3>
+              <p>Consulter le statut de vos demandes</p>
+              <button routerLink="/mes-demandes" class="btn-action">
+                Voir mes demandes
+              </button>
+            </div>
+            
+            <div class="action-card">
+              <div class="card-icon">👤</div>
+              <h3>Mon Profil</h3>
+              <p>Gérer les informations de votre compte</p>
+              <button routerLink="/profile" class="btn-action">
+                Mon profil
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Si utilisateur non connecté -->
+        <div *ngIf="!isLoggedIn()" class="guest-actions">
+          <h2>👋 Commencer</h2>
+          <div class="action-cards">
+            <div class="action-card primary">
+              <div class="card-icon">🔐</div>
+              <h3>Se Connecter</h3>
+              <p>Accéder à votre espace personnel</p>
+              <button (click)="goToLogin()" class="btn-action primary">
+                Se connecter
+              </button>
+            </div>
+            
+            <div class="action-card">
+              <div class="card-icon">✨</div>
+              <h3>Créer un Compte</h3>
+              <p>Première fois ? Créez votre compte</p>
+              <button (click)="goToRegister()" class="btn-action">
+                S'inscrire
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section informations -->
+    <section class="info-section">
+      <div class="info-container">
+        <h2>📚 Informations utiles</h2>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-icon">⏱️</div>
+            <h4>Délai de traitement</h4>
+            <p>Les demandes sont traitées sous 5 à 10 jours ouvrables</p>
+          </div>
+          
+          <div class="info-item">
+            <div class="info-icon">📄</div>
+            <h4>Documents requis</h4>
+            <p>CIN, CV, lettre de motivation et convention de stage</p>
+          </div>
+          
+          <div class="info-item">
+            <div class="info-icon">💬</div>
+            <h4>Support</h4>
+            <p>Contactez-nous pour toute question ou assistance</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-section">
+    <div class="footer-content">
+      <p>
+        Droits de propriété intellectuelle de la Préfecture de la Province de Berkane, 
+        Division de la Gouvernance Numérique Territoriale Intégrée. © | 2025 | V1.0.0
+      </p>
+    </div>
+  </footer>
+</div>

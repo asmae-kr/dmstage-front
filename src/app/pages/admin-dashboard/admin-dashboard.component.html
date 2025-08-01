@@ -1,0 +1,69 @@
+<div class="dashboard-container">
+  <div class="dashboard-header">
+    <h1>🎯 Dashboard Administrateur</h1>
+    <p>Gérez et suivez toutes les demandes de stage</p>
+  </div>
+
+  <!-- Message de test connexion -->
+  <div class="test-section">
+    <button (click)="testerConnexion()" class="btn-test" [disabled]="loading">
+      {{ loading ? '⏳ Test en cours...' : '🔍 Tester la connexion Admin' }}
+    </button>
+    
+    <div *ngIf="connexionMessage" class="message" [ngClass]="connexionOk ? 'success' : 'error'">
+      {{ connexionMessage }}
+    </div>
+  </div>
+
+  <!-- Statistiques -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-number">{{ stats.totalDemandes }}</div>
+      <div class="stat-label">Total Demandes</div>
+    </div>
+    
+    <div class="stat-card pending">
+      <div class="stat-number">{{ stats.demandesEnAttente }}</div>
+      <div class="stat-label">En Attente</div>
+    </div>
+    
+    <div class="stat-card accepted">
+      <div class="stat-number">{{ stats.demandesAcceptees }}</div>
+      <div class="stat-label">Acceptées</div>
+    </div>
+    
+    <div class="stat-card rejected">
+      <div class="stat-number">{{ stats.demandesRefusees }}</div>
+      <div class="stat-label">Refusées</div>
+    </div>
+
+    <div class="stat-card today">
+      <div class="stat-number">{{ stats.demandesAujourdhui }}</div>
+      <div class="stat-label">Aujourd'hui</div>
+    </div>
+
+    <div class="stat-card week">
+      <div class="stat-number">{{ stats.demandesCetteSemaine }}</div>
+      <div class="stat-label">Cette Semaine</div>
+    </div>
+  </div>
+
+  <!-- Actions rapides -->
+  <div class="actions-section">
+    <h2>🚀 Actions rapides</h2>
+    <div class="actions-grid">
+      <button (click)="voirDemandes()" class="action-btn primary">
+        📋 Voir toutes les demandes
+      </button>
+      <button (click)="actualiserStats()" class="action-btn secondary" [disabled]="loading">
+        🔄 Actualiser les statistiques
+      </button>
+    </div>
+  </div>
+
+  <!-- Message d'erreur -->
+  <div *ngIf="errorMessage" class="error-message">
+    ❌ {{ errorMessage }}
+    <button (click)="actualiserStats()" class="retry-btn">Réessayer</button>
+  </div>
+</div>
