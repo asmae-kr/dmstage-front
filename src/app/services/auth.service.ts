@@ -14,19 +14,21 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) {}
 
   login(credentials: { email: string; motDePasse: string }): Observable<void> {
-  return this.http.post<{ id: number; email: string; role: string; token: string }>(`${this.apiUrl}/login`, credentials).pipe(
-    tap(res => {
-      console.log('Réponse login:', res);
-      if (res && res.token && res.role) {
+  return this.http
+    .post<{ id: number; email: string; role: string; token: string }>(
+      `${this.apiUrl}/login`,
+      credentials
+    )
+    .pipe(
+      tap(res => {
+        console.log('Réponse login:', res);
         localStorage.setItem('auth_token', res.token);
         localStorage.setItem('user_role', res.role);
-      } else {
-        throw new Error('Réponse login invalide');
-      }
-    }),
-    map(() => void 0)
-  );
+      }),
+      map(() => void 0)
+    );
 }
+
 
   register(userData: { nom: string; email: string; motDePasse: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, userData);
