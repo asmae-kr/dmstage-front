@@ -1,0 +1,90 @@
+<!-- PAGE DE CONNEXION AVEC BACKGROUND ET SANS PROFIL -->
+<div class="login-page">
+  
+  <!-- HEADER SEULEMENT AVEC 2 LOGOS (SANS PROFIL) -->
+
+
+  <!-- CONTENU PRINCIPAL AVEC BACKGROUND -->
+  <main class="main-content-background">
+    <div class="connexion-container">
+      <div class="connexion-card">
+        <div class="connexion-header">
+        
+          <h2>Connexion</h2>
+          <p class="form-subtitle">Accédez à votre espace personnel</p>
+        </div>
+
+        <div class="connexion-form-section">
+          <form (ngSubmit)="onSubmit()" class="connexion-form">
+            
+            <!-- Adresse email -->
+            <div class="form-group">
+              <label for="email" class="form-label">
+                 Adresse email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                [(ngModel)]="email"
+                class="form-control"
+                placeholder="votre.email@example.com"
+                required
+                autocomplete="email"
+              />
+            </div>
+
+            <!-- Mot de passe -->
+            <div class="form-group">
+              <label for="password" class="form-label">
+                 Mot de passe
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="motDePasse"
+                [(ngModel)]="motDePasse"
+                class="form-control"
+                placeholder="Votre mot de passe"
+                required
+                autocomplete="current-password"
+              />
+            </div>
+
+            <!-- Message d'erreur -->
+            <div *ngIf="errorMsg" class="error-message">
+              ❌ {{ errorMsg }}
+            </div>
+
+            <!-- Bouton de connexion -->
+            <button type="submit" class="btn-connexion" [disabled]="!email || !motDePasse">
+              Se connecter
+            </button>
+
+            <!-- Liens -->
+            <div class="form-links">
+              <a routerLink="/register" class="link-register">
+                 Créer un compte
+              </a>
+              <a routerLink="/home" class="link-home">
+                🏠 Retour à l'accueil
+              </a>
+            </div>
+
+            <!-- ===== NOUVEAU BOUTON TEST ADMIN TEMPORAIRE ===== -->
+            <div class="test-admin-section">
+              <a routerLink="/admin/dashboard" class="btn-test-admin">
+                ⚙️ Accéder à l'interface Admin
+              </a>
+              
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+
+</div>

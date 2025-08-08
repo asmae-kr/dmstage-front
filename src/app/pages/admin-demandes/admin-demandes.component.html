@@ -1,0 +1,299 @@
+<div class="admin-container">
+
+
+  <!-- Sidebar Navigation comme Dashboard -->
+
+
+  <!-- Contenu principal -->
+  <div class="content">
+    <div class="main">
+      
+      <!-- Section Liste des demandes -->
+      <div class="demandes-section">
+        
+        <!-- Titre et contrôles -->
+        <div class="section-header">
+          <div class="header-title-center">
+            <h2>Liste des demandes de stage</h2>
+          </div>
+          
+          <div class="controls-row">
+            <!-- Barre de recherche à gauche -->
+            <div class="search-controls">
+              <input 
+                type="text" 
+                [(ngModel)]="searchTerm" 
+                (keyup)="rechercherDemandes()" 
+                placeholder="Rechercher par nom, prénom..." 
+                class="search-input">
+              <button (click)="rechercherDemandes()" class="btn-search">🔍</button>
+            </div>
+            
+            <!-- Contrôles export et dates à droite -->
+            <div class="export-controls">
+              <div class="date-filters">
+                <input 
+                  type="date" 
+                  [(ngModel)]="dateDebut" 
+                  (change)="appliquerFiltres()" 
+                  class="date-input" 
+                  title="Date de début">
+                <span class="date-separator">-</span>
+                <input 
+                  type="date" 
+                  [(ngModel)]="dateFin" 
+                  (change)="appliquerFiltres()" 
+                  class="date-input" 
+                  title="Date de fin">
+              </div>
+              <button (click)="exporterDemandes()" class="btn-export">
+                📊 Export Excel
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- État de chargement -->
+        <div *ngIf="loading" class="loading-state">
+          ⏳ Chargement des demandes...
+        </div>
+
+        <!-- Tableau des demandes -->
+        <div class="table-container" *ngIf="!loading">
+          <table class="demandes-table">
+            
+            <thead>
+              <tr>
+                <th (click)="trierPar('id')" class="sortable">
+                  ID
+                  <span class="sort-icon" *ngIf="sortField === 'id'">
+                    {{ sortDirection === 'asc' ? '▲' : '▼' }}
+                  </span>
+                </th>
+                <th (click)="trierPar('nom')" class="sortable">
+                  Nom
+                  <span class="sort-icon" *ngIf="sortField === 'nom'">
+                    {{ sortDirection === 'asc' ? '▲' : '▼' }}
+                  </span>
+                </th>
+                <th (click)="trierPar('prenom')" class="sortable">
+                  Prénom
+                  <span class="sort-icon" *ngIf="sortField === 'prenom'">
+                    {{ sortDirection === 'asc' ? '▲' : '▼' }}
+                  </span>
+                </th>
+                <th>Email</th>
+                <th (click)="trierPar('typeStage')" class="sortable">
+                  Type de Stage
+                  <span class="sort-icon" *ngIf="sortField === 'typeStage'">
+                    {{ sortDirection === 'asc' ? '▲' : '▼' }}
+                  </span>
+                </th>
+                <th (click)="trierPar('dateDemande')" class="sortable">
+                  Date Demande
+                  <span class="sort-icon" *ngIf="sortField === 'dateDemande'">
+                    {{ sortDirection === 'asc' ? '▲' : '▼' }}
+                  </span>
+                </th>
+                
+                <!-- COLONNE STATUT MODIFIÉE AVEC DROPDOWN -->
+                <th (click)="trierPar('statut')" class="sortable">
+                  Statut
+                  <span class="sort-icon" *ngIf="sortField === 'statut'">
+                    {{ sortDirection === 'asc' ? '▲' : '▼' }}
+                  </span>
+                </th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let demande of demandesFiltrees" class="demande-row">
+                <td>{{ demande.id }}</td>
+                <td>{{ demande.nom }}</td>
+                <td>{{ demande.prenom }}</td>
+                <td>{{ demande.email }}</td>
+                <td>
+                  <span class="badge badge-type">{{ demande.typeStage }}</span>
+                </td>
+                <td>{{ demande.dateDemande | date:'dd/MM/yyyy' }}</td>
+                
+                <!-- COLONNE STATUT MODIFIÉE AVEC DROPDOWN -->
+                <td class="statut-cell">
+                  <div class="statut-container">
+                    <!-- Badge du statut actuel -->
+                    <span class="badge" [ngClass]="getBadgeClass(demande.statut)">
+                      {{ demande.statut === 'EN_ATTENTE' ? 'En attente' : 
+                         demande.statut === 'ACCEPTEE' ? 'Acceptée' : 
+                         demande.statut === 'REFUSEE' ? 'Refusée' : demande.statut }}
+                    </span>
+                    
+                    <!-- Dropdown pour changer le statut -->
+                    <div class="statut-dropdown">
+                      <button 
+                        class="dropdown-toggle"
+(click)="demande.id && toggleDropdown(demande.id, $event)"
+                        [class.active]="activeDropdown === demande.id"
+                        title="Changer le statut">
+                        <i class="arrow-icon">{{ activeDropdown === demande.id ? '▲' : '▼' }}</i>
+                      </button>
+                      
+                      <!-- Menu dropdown -->
+                      <div 
+                        class="dropdown-menu" 
+                        *ngIf="activeDropdown === demande.id"
+                        (click)="$event.stopPropagation()">
+                        
+                        <button 
+                          *ngFor="let option of getOptionsStatut(demande.statut)"
+                          class="dropdown-item"
+                          [ngClass]="option.class"
+                          (click)="changerStatut(demande, option.value, $event)">
+                          {{ option.label }}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                
+                <!-- Colonne Actions -->
+                <td>
+                  <button 
+                    (click)="ouvrirDetails(demande)" 
+                    class="view-details" 
+                    title="Voir les détails">
+                    👁️
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+<!-- Pagination -->
+          <!-- Message si aucune demande -->
+          <div *ngIf="!loading && demandesFiltrees.length === 0" class="no-data">
+            📭 Aucune demande trouvée
+          </div>
+        </div>
+        <!-- Pagination simple -->
+     <!-- Pagination complète comme votre screenshot -->
+<div class="pagination-footer" *ngIf="totalElements > 0">
+  <div class="pagination-controls">
+    <!-- Items per page à gauche -->
+    <div class="items-per-page">
+      <label>Items per page:</label>
+      <select [(ngModel)]="pageSize" (change)="changerTaillePage()" class="page-size-select">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="25">25</option>
+        <option value="50">50</option>
+      </select>
+    </div>
+    
+    <!-- Info au centre -->
+    <div class="page-info">
+      {{ getStartIndex() }}-{{ getEndIndex() }} of {{ totalElements }}
+    </div>
+    
+    <!-- Navigation à droite -->
+    <div class="page-navigation">
+      <!-- Première page -->
+      <button 
+        (click)="changerPage(0)" 
+        [disabled]="currentPage === 0" 
+        class="nav-btn"
+        title="Première page">
+        ⟪
+      </button>
+      
+      <!-- Page précédente -->
+      <button 
+        (click)="changerPage(currentPage - 1)" 
+        [disabled]="currentPage === 0" 
+        class="nav-btn"
+        title="Page précédente">
+        ⟨
+      </button>
+      
+      <!-- Page suivante -->
+      <button 
+        (click)="changerPage(currentPage + 1)" 
+        [disabled]="currentPage >= totalPages - 1" 
+        class="nav-btn"
+        title="Page suivante">
+        ⟩
+      </button>
+      
+      <!-- Dernière page -->
+      <button 
+        (click)="changerPage(totalPages - 1)" 
+        [disabled]="currentPage >= totalPages - 1" 
+        class="nav-btn"
+        title="Dernière page">
+        ⟫
+      </button>
+    </div>
+  </div>
+</div>
+  </div>
+
+
+  <!-- Modal pour les détails -->
+  <div *ngIf="selectedDemande" class="modal-overlay" (click)="fermerModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h3>📋 Détails de la demande #{{ selectedDemande.id }}</h3>
+        <button (click)="fermerModal()" class="btn-close">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="detail-grid">
+          <div class="detail-item">
+            <strong>Nom complet:</strong>
+            <span>{{ selectedDemande.nom }} {{ selectedDemande.prenom }}</span>
+          </div>
+          <div class="detail-item">
+            <strong>Email:</strong>
+            <span>{{ selectedDemande.email }}</span>
+          </div>
+          <div class="detail-item">
+            <strong>Type de stage:</strong>
+            <span>{{ selectedDemande.typeStage }}</span>
+          </div>
+          <div class="detail-item">
+            <strong>Date de demande:</strong>
+            <span>{{ selectedDemande.dateDemande | date:'dd/MM/yyyy' }}</span>
+          </div>
+          <div class="detail-item">
+            <strong>Statut actuel:</strong>
+            <span class="badge" [ngClass]="getBadgeClass(selectedDemande.statut)">
+              {{ selectedDemande.statut }}
+            </span>
+          </div>
+          <div class="detail-item full-width" *ngIf="selectedDemande.commentaire">
+            <strong>Commentaire:</strong>
+            <p>{{ selectedDemande.commentaire }}</p>
+          </div>
+          <div class="detail-item" *ngIf="selectedDemande.cvFileName">
+            <strong>CV:</strong>
+            <span>{{ selectedDemande.cvFileName }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button 
+          (click)="changerStatut(selectedDemande, 'ACCEPTE', $event)" 
+          class="btn-modal btn-accept"
+          *ngIf="selectedDemande.statut !== 'ACCEPTEE'">
+          ✅ Accepter
+        </button>
+        <button 
+          (click)="changerStatut(selectedDemande, 'REFUSE', $event)" 
+          class="btn-modal btn-reject"
+          *ngIf="selectedDemande.statut !== 'REFUSEE'">
+          ❌ Refuser
+        </button>
+        <button (click)="fermerModal()" class="btn-modal btn-secondary">
+          Fermer
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,166 @@
+/* ========== PAGE & BACKGROUND ========== */
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content-background {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  /* background-image: url('/assets/images/back2.jpg'); */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+}
+
+/* ========== HEADER TRANSPARENT ========== */
+
+
+/* ========== FORMULAIRE DE CONNEXION ========== */
+
+.connexion-container {
+  width: 100%;
+  max-width: 450px;
+  position: relative;
+  z-index: 2;
+}
+
+.connexion-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-radius: 15px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  animation: slideIn 0.5s ease-out;
+  overflow: hidden;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.connexion-header {
+  background: linear-gradient(135deg, #f2f3f4);
+  color: rgb(16, 16, 16);
+  padding: 25px 30px;
+  text-align: center;
+}
+
+.connexion-header h2 {
+  margin: 0 0 10px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.form-subtitle {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.connexion-form-section {
+  padding: 40px 30px;
+  background: rgba(255, 255, 255, 0.98);
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  background: white;
+}
+
+.form-control::placeholder {
+  color: #9ca3af;
+}
+
+.error-message {
+  background: rgba(254, 238, 238, 0.95);
+  color: #c53030;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  border: 1px solid #fed7d7;
+  backdrop-filter: blur(5px);
+}
+
+.btn-connexion {
+  width: 100%;
+  background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.btn-connexion:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+}
+
+.btn-connexion:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: #94a3b8;
+  box-shadow: none;
+}
+
+.form-links {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.link-register,
+.link-home {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.link-register:hover,
+.link-home:hover {
+  color: #1e3a8a;
+  text-decoration: underline;
+}
+
+

@@ -1,0 +1,51 @@
+<!-- CONTAINER GLOBAL -->
+<div class="container">
+
+
+  <!-- CONTENU PRINCIPAL -->
+  <div class="main-layout">
+
+
+    <!-- ZONE TABLEAU -->
+    <main class="content">
+      <table class="demandes-table">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>prenom</th>
+            <th>cin</th>
+            <th>Email</th>
+            <th>Téléphone</th>
+            <th>Type de stage</th>
+            <th>Date Début</th>
+            <th>Statut</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Si aucune demande -->
+          <tr *ngIf="!loading && demandes.length === 0">
+            <td colspan="8">Aucune demande trouvée.</td>
+          </tr>
+
+          <!-- Si demandes -->
+          <tr *ngFor="let d of demandes">
+            <td>{{ d.nom }}</td>
+            <td>{{ d.prenom }}</td>
+            <td>{{ d.cin }}</td>
+            <td>{{ d.email }}</td>
+            <td>{{ d.telephone }}</td>
+            <td>{{ d.dateDebut | date:'dd/MM/yyyy' }}</td>
+            <td>
+              <span [ngClass]="getStatutClass(d.statut)">
+                {{ d.statut }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
+
+
+
+</div>

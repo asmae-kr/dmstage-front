@@ -1,0 +1,428 @@
+/* ===== RESET ET BASE ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* ===== CONTENEUR PRINCIPAL ===== */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+}
+
+/* ===== CONTENU PRINCIPAL ===== */
+.main-content {
+  flex: 1;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ===== STYLES GLOBAUX POUR LES FORMULAIRES ===== */
+:global(.form-group) {
+  margin-bottom: 1.5rem;
+}
+
+:global(.form-control) {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+:global(.form-control:focus) {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+:global(.form-label) {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #495057;
+}
+
+/* ===== STYLES GLOBAUX POUR LES BOUTONS ===== */
+:global(.btn) {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+:global(.btn:hover) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+:global(.btn:active) {
+  transform: translateY(0);
+}
+
+:global(.btn-primary) {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+}
+
+:global(.btn-primary:hover) {
+  background: linear-gradient(45deg, #5a6fd8, #6a4190);
+}
+
+:global(.btn-secondary) {
+  background-color: #6c757d;
+  color: white;
+}
+
+:global(.btn-secondary:hover) {
+  background-color: #5a6268;
+}
+
+:global(.btn-success) {
+  background-color: #28a745;
+  color: white;
+}
+
+:global(.btn-success:hover) {
+  background-color: #218838;
+}
+
+:global(.btn-danger) {
+  background-color: #dc3545;
+  color: white;
+}
+
+:global(.btn-danger:hover) {
+  background-color: #c82333;
+}
+
+:global(.btn-warning) {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+:global(.btn-warning:hover) {
+  background-color: #e0a800;
+}
+
+/* ===== STYLES GLOBAUX POUR LES CARTES ===== */
+:global(.card) {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+:global(.card:hover) {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+:global(.card-header) {
+  padding: 1.5rem;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+:global(.card-body) {
+  padding: 2rem;
+}
+
+:global(.card-footer) {
+  padding: 1rem 2rem;
+  background-color: #f8f9fa;
+  border-top: 1px solid #dee2e6;
+}
+
+/* ===== STYLES GLOBAUX POUR LES ALERTES ===== */
+:global(.alert) {
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+:global(.alert-success) {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+:global(.alert-danger) {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+:global(.alert-warning) {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+
+:global(.alert-info) {
+  background-color: #cce7ff;
+  color: #004085;
+  border: 1px solid #b6d7ff;
+}
+
+/* ===== STYLES GLOBAUX POUR LES TABLEAUX ===== */
+:global(.table) {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+:global(.table th) {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  border: none;
+}
+
+:global(.table td) {
+  padding: 1rem;
+  border-bottom: 1px solid #dee2e6;
+  vertical-align: middle;
+}
+
+:global(.table tbody tr:hover) {
+  background-color: #f8f9fa;
+}
+
+:global(.table tbody tr:last-child td) {
+  border-bottom: none;
+}
+
+/* ===== STYLES GLOBAUX POUR LA PAGINATION ===== */
+:global(.pagination) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 2rem 0;
+}
+
+:global(.pagination button) {
+  padding: 0.5rem 1rem;
+  border: 1px solid #dee2e6;
+  background: white;
+  color: #495057;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+:global(.pagination button:hover:not(:disabled)) {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
+:global(.pagination button:disabled) {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+:global(.pagination .active) {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
+/* ===== UTILITAIRES ===== */
+:global(.text-center) {
+  text-align: center;
+}
+
+:global(.text-left) {
+  text-align: left;
+}
+
+:global(.text-right) {
+  text-align: right;
+}
+
+:global(.mt-1) { margin-top: 0.25rem; }
+:global(.mt-2) { margin-top: 0.5rem; }
+:global(.mt-3) { margin-top: 1rem; }
+:global(.mt-4) { margin-top: 1.5rem; }
+:global(.mt-5) { margin-top: 3rem; }
+
+:global(.mb-1) { margin-bottom: 0.25rem; }
+:global(.mb-2) { margin-bottom: 0.5rem; }
+:global(.mb-3) { margin-bottom: 1rem; }
+:global(.mb-4) { margin-bottom: 1.5rem; }
+:global(.mb-5) { margin-bottom: 3rem; }
+
+:global(.p-1) { padding: 0.25rem; }
+:global(.p-2) { padding: 0.5rem; }
+:global(.p-3) { padding: 1rem; }
+:global(.p-4) { padding: 1.5rem; }
+:global(.p-5) { padding: 3rem; }
+
+:global(.d-flex) {
+  display: flex;
+}
+
+:global(.justify-content-center) {
+  justify-content: center;
+}
+
+:global(.justify-content-between) {
+  justify-content: space-between;
+}
+
+:global(.align-items-center) {
+  align-items: center;
+}
+
+:global(.flex-column) {
+  flex-direction: column;
+}
+
+:global(.w-100) {
+  width: 100%;
+}
+
+:global(.h-100) {
+  height: 100%;
+}
+
+/* ===== ANIMATIONS ===== */
+:global(.fade-in) {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+:global(.slide-in) {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 1rem;
+  }
+  
+  :global(.btn) {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  :global(.card-body) {
+    padding: 1.5rem;
+  }
+  
+  :global(.table) {
+    font-size: 0.9rem;
+  }
+  
+  :global(.table th),
+  :global(.table td) {
+    padding: 0.75rem 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :global(.pagination) {
+    flex-wrap: wrap;
+  }
+  
+  :global(.pagination button) {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* ===== STYLES POUR LE LOADING ===== */
+:global(.loading) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+:global(.spinner) {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ===== SCROLLBAR PERSONNALISÉE ===== */
+:global(::-webkit-scrollbar) {
+  width: 8px;
+}
+
+:global(::-webkit-scrollbar-track) {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+:global(::-webkit-scrollbar-thumb) {
+  background: #667eea;
+  border-radius: 4px;
+}
+
+:global(::-webkit-scrollbar-thumb:hover) {
+  background: #5a6fd8;
+}

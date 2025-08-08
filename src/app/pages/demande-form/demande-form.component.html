@@ -1,0 +1,92 @@
+<!-- CONTAINER GLOBAL -->
+<div class="container">
+
+
+  <!-- CONTENU PRINCIPAL AVEC MENU + FORM -->
+  <div class="main-layout">
+
+    <!-- MENU LATERAL -->
+  
+
+    <!-- FORMULAIRE -->
+    <div class="form-container">
+      <h2 class="form-title">Formulaire Demande de Stage</h2>
+
+      <mat-accordion>
+        <!-- PANEL INFOS -->
+        <mat-expansion-panel [expanded]="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>Informations personnelles</mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <form #infosForm="ngForm" (ngSubmit)="submitInfos()">
+            <div class="grid-2">
+              <input type="text" name="nom" [(ngModel)]="dto.nom" placeholder="Nom*" required>
+              <input type="text" name="prenom" [(ngModel)]="dto.prenom" placeholder="Prénom*" required>
+              <input type="text" name="cin" [(ngModel)]="dto.cin" placeholder="CIN*" required>
+              <input type="email" name="email" [(ngModel)]="dto.email" placeholder="Email*" required>
+              <input type="text" name="adresseDomicile" [(ngModel)]="dto.adresseDomicile" placeholder="Adresse*" required>
+              <input type="text" name="telephone" [(ngModel)]="dto.telephone" placeholder="Téléphone*" required>
+            </div>
+            <div class="radio-group">
+              <label>Sexe :</label>
+              <label><input type="radio" name="sexe" value="Homme" [(ngModel)]="dto.sexe"> Homme</label>
+              <label><input type="radio" name="sexe" value="Femme" [(ngModel)]="dto.sexe"> Femme</label>
+            </div>
+           <div class="grid-2">
+  <div class="form-group">
+    <label for="typeStage">Type de stage :</label>
+    <select id="typeStage" name="typeStage" [(ngModel)]="dto.typeStage" required>
+      <option value="" disabled selected hidden>Type de stage*</option>
+      <option value="NORMAL">Stage Normal</option>
+      <option value="OBSERVATION">Stage d'observation</option>
+      <option value="INITIATION">Stage d'initiation</option>
+      <option value="FIN_ETUDE">Fin d'études</option>
+      <option value="PFE">PFE</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="dateDebut">Date de début :</label>
+    <input type="date" id="dateDebut" name="dateDebut" [(ngModel)]="dto.dateDebut" required>
+  </div>
+
+  <div class="form-group">
+    <label for="duree">Durée (en jours) :</label>
+    <input type="number" id="duree" name="duree" [(ngModel)]="dto.duree" placeholder="Durée (en jours)*" required
+    min="1" required>
+  </div>
+</div>
+
+            <div class="submit-btn">
+              <button type="submit" [disabled]="!infosForm.form.valid">Suivant</button>
+            </div>
+          </form>
+        </mat-expansion-panel>
+
+        <!-- PANEL FICHIERS -->
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Pièces jointes</mat-panel-title>
+          </mat-expansion-panel-header>
+          <form (ngSubmit)="submitFiles()">
+            <input type="file" (change)="onFileSelected($event, 'conventionStage')" required>
+            <input type="file" (change)="onFileSelected($event, 'demandeStage')" required>
+            <input type="file" (change)="onFileSelected($event, 'cv')" required>
+            <input type="file" (change)="onFileSelected($event, 'lettreMotivation')" required>
+            <input type="file" (change)="onFileSelected($event, 'cinRecto')" required>
+            <input type="file" (change)="onFileSelected($event, 'cinVerso')" required>
+            <input type="file" (change)="onFileSelected($event, 'photo')" required>
+            <div class="submit-btn">
+              <button type="submit">Envoyer</button>
+            </div>
+          </form>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div> <!-- FIN .form-container -->
+
+  </div> <!-- FIN .main-layout -->
+
+ 
+
+</div> <!-- FIN .container -->

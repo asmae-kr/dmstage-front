@@ -1,0 +1,79 @@
+<!-- src/app/core/sidbar/sidbar.html -->
+<nav class="sidebar-fixed">
+  <div class="nav-icons">
+    
+    <!-- ========== ICÔNES POUR ADMIN ========== -->
+    <ng-container *ngIf="isAdmin()">
+      
+      <!-- Accueil Admin (Dashboard) -->
+      <a (click)="goHome()"
+         class="nav-icon home-icon" 
+         title="Acceuil"
+         [class.active]="isRouteActive('/admin/dashboard')">
+        🏠
+      </a>
+
+      <!-- Liste des demandes Admin -->
+      <a (click)="goToRequests()"
+         class="nav-icon requests-icon" 
+         title="Liste des demandes"
+         [class.active]="isRouteActive('/admin/demandes')">
+        📋
+      </a>
+
+      <!-- Retour page précédente -->
+      <a (click)="goBack()" 
+         class="nav-icon back-icon" 
+         title="Page précédente">
+        ⬅️
+      </a>
+
+      <!-- Déconnexion -->
+      <a (click)="logout()" 
+         class="nav-icon logout-icon" 
+         title="Déconnexion">
+        🚪
+      </a>
+      
+    </ng-container>
+
+    <!-- ========== ICÔNES POUR UTILISATEUR ========== -->
+    <ng-container *ngIf="isUser()">
+      
+      <!-- Accueil Utilisateur -->
+      <a (click)="goHome()"
+         class="nav-icon home-icon" 
+         title="Accueil"
+         [class.active]="isExactRoute('/home')">
+        🏠
+      </a>
+
+      <!-- Mes demandes -->
+      <a (click)="goToRequests()"
+         class="nav-icon requests-icon" 
+         title="Mes demandes"
+         [class.active]="isRouteActive('/mes-demandes')">
+        📄
+      </a>
+
+      <!-- Retour page précédente -->
+      <a (click)="goBack()" 
+         class="nav-icon back-icon" 
+         title="Page précédente">
+        ⬅️
+      </a>
+
+      <!-- Déconnexion -->
+      <a (click)="logout()" 
+         class="nav-icon logout-icon" 
+         title="Déconnexion">
+        🚪
+      </a>
+      
+    </ng-container>
+
+    <!-- ========== MESSAGE SI PAS DE RÔLE RECONNU ========== -->
+  
+    
+  </div>
+</nav>

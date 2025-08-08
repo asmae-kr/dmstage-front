@@ -1,0 +1,52 @@
+.home-container {
+  font-family: 'Segoe UI', sans-serif;
+  /* background-image: url('/assets/images/back2.jpg'); */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER avec logos alignés à gauche et centre */
+
+
+.content {
+  flex: 1;
+  display: flex;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.main h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.illustration {
+  max-width: 400px;
+  margin-bottom: 2rem;
+}
+
+.btn-nouvelle-demande {
+  background-color: #c471ed;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 30px;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: background-color 0.3s;
+}
+
+.btn-nouvelle-demande:hover {
+  background-color: #a144d4;
+}
+

@@ -1,0 +1,136 @@
+/* src/app/core/sidbar/sidbar.css */
+
+.sidebar-fixed {
+  position: fixed;
+  left: 0;
+  top: 50%; /* Centre parfaitement au milieu à gauche */
+  transform: translateY(-50%);
+  z-index: 1000;
+  
+  /* Style simple et transparent */
+  background-color: transparent;
+  
+  /* Dimensions très petites */
+  width: 50px;
+  padding: 0.8rem 0;
+  
+  /* Centre les icônes */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem; /* Espacement réduit entre les icônes */
+}
+
+.nav-icon {
+  /* Style très simple et petit */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  width: 35px;
+  height: 35px;
+  
+  font-size: 18px;
+  text-decoration: none;
+  color: #9b59b6;
+  
+  /* Transition simple et rapide */
+  transition: transform 0.15s ease;
+  cursor: pointer;
+  
+  /* Complètement transparent */
+  background: transparent;
+  border: none;
+  border-radius: 8px; /* Coins légèrement arrondis */
+}
+
+/* ========== EFFET HOVER SIMPLE ========== */
+.nav-icon:hover {
+  transform: scale(1.15);
+  background: rgba(155, 89, 182, 0.1); /* Très léger background au hover */
+}
+
+/* ========== ÉTAT ACTIF ========== */
+.nav-icon.active {
+  color: #7b1fa2; /* Violet plus foncé pour la page active */
+  background: rgba(155, 89, 182, 0.15);
+  transform: scale(1.1);
+  font-weight: bold;
+}
+
+/* ========== STYLES HOVER COLORÉS ========== */
+
+/* Icône Home */
+.home-icon:hover {
+  color: #4caf50;
+}
+
+.home-icon.active {
+  color: #2e7d32;
+}
+
+/* Icône Demandes/Requests */
+.requests-icon:hover {
+  color: #2196f3;
+}
+
+.requests-icon.active {
+  color: #1565c0;
+}
+
+/* Icône Retour */
+.back-icon:hover {
+  color: #ff9800;
+}
+
+/* Icône Déconnexion */
+.logout-icon:hover {
+  color: #f44336;
+}
+
+/* ========== EFFET AU CLIC ========== */
+.nav-icon:active {
+  transform: scale(0.95);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .sidebar-fixed {
+    width: 45px;
+    padding: 0.6rem 0;
+  }
+  
+  .nav-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+  }
+  
+  .nav-icons {
+    gap: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar-fixed {
+    width: 40px;
+    padding: 0.5rem 0;
+    left: 5px; /* Petit décalage sur très petits écrans */
+  }
+  
+  .nav-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+  
+  .nav-icons {
+    gap: 0.5rem;
+  }
+}

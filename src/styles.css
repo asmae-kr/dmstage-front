@@ -1,0 +1,220 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+    font-family: 'Segoe UI', sans-serif;
+  background-image: url('/assets/images/back2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ========== FOOTER ========== */
+.form-footer {
+  background: #2c3e50;
+  color: white;
+  padding: 0.25rem 0.25rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.footer-visible {
+  background: #1f2937;
+  color: white;
+  padding: 1px 0;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.footer-content-large {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 40px;
+}
+
+.dgnti-section {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.logo-dgnti-large {
+  height: 60px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.dgnti-fallback {
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #1f2937;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.footer-spacer {
+  flex: 0 0 auto;
+  width: 60px;
+}
+
+.copyright-section {
+  flex: 1;
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+/* ========== RESPONSIVE ========== */
+
+@media (max-width: 768px) {
+  .header-logos {
+    padding: 0 20px;
+    min-height: 60px;
+    gap: 15px;
+  }
+
+  .logo-province,
+  .logo-ministere {
+    height: 50px;
+  }
+
+  .logo-right {
+    width: 50px;
+  }
+
+  .main-content-background {
+    padding: 15px 10px;
+    background-attachment: scroll;
+  }
+
+  .connexion-form-section {
+    padding: 30px 20px;
+  }
+
+  .footer-content-large {
+    padding: 0 20px;
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .logo-dgnti-large {
+    height: 45px;
+  }
+
+  .footer-spacer {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-logos {
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .logo-right {
+    display: none;
+  }
+
+  .logo-province,
+  .logo-ministere {
+    height: 40px;
+  }
+
+  .connexion-card {
+    background: rgba(255, 255, 255, 0.98);
+  }
+}
+
+/* ========== HOVER & ACCESSIBILITÉ ========== */
+
+.logo-province,
+.logo-ministere,
+.logo-dgnti-large {
+  transition: transform 0.3s ease;
+}
+
+.logo-province:hover,
+.logo-ministere:hover,
+.logo-dgnti-large:hover {
+  transform: scale(1.05);
+}
+
+:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* ===== HEADER TRANSPARENT MINIMAL ===== */
+.header {
+  /* Fond très léger pour lisibilité */
+  background: transparent;
+  color: #333;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ===== LOGOS ===== */
+.logos {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+.logo-province {
+  height: 50px;
+  width: auto;
+}
+
+.logos-center {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex: 1;
+  justify-content: center;
+}
+
+
+.sidebar {
+  background-color: #f4e4f7;
+  padding: 1rem;
+  width: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.icon-link {
+  font-size: 20px;
+  text-decoration: none;
+  color: #9b59b6;
+  transition: transform 0.2s;
+}
+
+.icon-link:hover {
+  transform: scale(1.2);
+}
+.sidebar {
+    position: fixed;
+    left:0;
+    top: 40%;
+ background-color: transparent; /* enlever la couleur rose */
+  padding: 1rem;
+  width: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+
+  /* Centre verticalement */
+  justify-content: center;
+}   

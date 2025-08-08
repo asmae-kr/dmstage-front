@@ -1,0 +1,122 @@
+<!-- PAGE D'INSCRIPTION AVEC MÊME BACKGROUND -->
+<div class="register-page">
+  
+  
+
+  <!-- CONTENU PRINCIPAL AVEC MÊME BACKGROUND -->
+  <main class="main-content-background">
+    <div class="inscription-container">
+      <div class="inscription-card">
+        <div class="inscription-header">
+          <h2>Inscription</h2>
+          <p class="form-subtitle">Créez votre compte</p>
+        </div>
+
+        <div class="inscription-form-section">
+          <form (ngSubmit)="onSubmit()" class="inscription-form">
+            
+            <!-- Prénom -->
+            <div class="form-group">
+              <label for="prenom" class="form-label">Prénom</label>
+              <input
+                type="text"
+                id="prenom"
+                name="prenom"
+                [(ngModel)]="prenom"
+                class="form-control"
+                placeholder="Votre prénom"
+                required
+              />
+            </div>
+
+            <!-- Nom -->
+            <div class="form-group">
+              <label for="nom" class="form-label">Nom</label>
+              <input
+                type="text"
+                id="nom"
+                name="nom"
+                [(ngModel)]="nom"
+                class="form-control"
+                placeholder="Votre nom"
+                required
+              />
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+              <label for="email" class="form-label"> Adresse email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                [(ngModel)]="email"
+                class="form-control"
+                placeholder="votre.email@example.com"
+                required
+              />
+            </div>
+
+            <!-- Mot de passe -->
+            <div class="form-group">
+              <label for="motDePasse" class="form-label"> Mot de passe</label>
+              <input
+                type="password"
+                id="motDePasse"
+                name="motDePasse"
+                [(ngModel)]="motDePasse"
+                class="form-control"
+                placeholder="Votre mot de passe"
+                required
+              />
+            </div>
+
+            <!-- Vérifier le mot de passe -->
+            <div class="form-group">
+              <label for="confirmerMotDePasse" class="form-label"> Vérifier le mot de passe</label>
+              <input
+                type="password"
+                id="confirmerMotDePasse"
+                name="confirmerMotDePasse"
+                [(ngModel)]="confirmerMotDePasse"
+                class="form-control"
+                placeholder="Confirmer votre mot de passe"
+                required
+              />
+            </div>
+
+            <!-- Message d'erreur -->
+            <div *ngIf="erreur" class="error-message">
+              ❌ {{ erreur }}
+            </div>
+
+            <!-- Message de succès -->
+            <div *ngIf="successMsg" class="success-message">
+              ✅ {{ successMsg }}
+            </div>
+
+            <!-- Bouton d'inscription -->
+            <button 
+              type="submit" 
+              class="btn-inscription" 
+              [disabled]="!prenom || !nom || !email || !motDePasse || !confirmerMotDePasse">
+              S'inscrire
+            </button>
+
+            <!-- Lien vers connexion -->
+            <div class="form-links">
+              <a routerLink="/login" class="link-connexion">
+                 Déjà un compte ? Se connecter
+              </a>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER IDENTIQUE -->
+  
+
+</div>
